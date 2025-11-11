@@ -1,20 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int remove_dup(int arr[],int n){
-
-  int i=0;
-  for(int j=1;j<n;j++){
-    if(arr[i]!=arr[j]){
-      arr[i+1]=arr[j];
-      i++;
-    }
+void Left_Rotate(int arr[],int n){
+  int temp=arr[0];
+  for(int i=0;i<n-1;i++){
+    arr[i]=arr[i+1];
   }
-  return i+1;
+  arr[n-1]=temp;
 }
 
-int main() {
 
+int main() {
   int n;
 
     cout << "Enter number of elements: ";
@@ -26,14 +22,11 @@ int main() {
         cin >> arr[i];
     }
 
-    int newSize=remove_dup(arr,n);
-    cout<<"Array after removing duplicates";
-    for(int i=0;i<newSize;i++){
+    Left_Rotate(arr,n);
+    cout<<"Array after left rotate by one:";
+    for(int i=0;i<n;i++){
       cout<<arr[i]<<" ";
     }
 
-    
     return 0;
 }
-
-
