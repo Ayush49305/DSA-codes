@@ -1,19 +1,20 @@
 //It is only used in Sorted array.
 
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-int binarySearch(int arr[],int n,int key){
-    int start=0,end=n-1;
+int binarySearch(vector<int> &arr,int key){
+    int n = arr.size();
+    int low=0,high=n-1;
 
-    while(start<=end){
-        int mid=(start+end)/2;
+    while(low<=high){
+        int mid=(low+high)/2;
         if(arr[mid]==key){
             return mid;
         } else if(arr[mid]<key){
-            start=mid+1;
+            low=mid+1;
         } else{
-            end=mid-1;
+            high=mid-1;
         }
     }
     return -1;
@@ -25,7 +26,7 @@ int main() {
 
     cout<<"Enter the size of array:";
     cin>>n;
-    int arr[n];
+    vector<int> arr (n);
 
     cout<<"Enter sorted array:";
     for(int i=0;i<n;i++){
@@ -36,7 +37,7 @@ int main() {
     cin>>key;
     
 
-    cout<<"Element found at index:"<<binarySearch(arr,n,key);
+    cout<<"Element found at index:"<<binarySearch(arr,key);
   
     return 0;
 }
