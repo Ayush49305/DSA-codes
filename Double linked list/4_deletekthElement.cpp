@@ -1,9 +1,7 @@
-
-
 #include <bits/stdc++.h>
 // #ifdef _WIN32
 // #include <windows.h>
-// #endif
+//#endif
 using namespace std;
 
 class Node {
@@ -57,20 +55,62 @@ Node* deleteHead(Node* head){
     return head;
 }
 
+
+Node* deleteTail(Node* head){
+    if(head==NULL || head->next == NULL){
+        return NULL;
+    }
+    Node* tail =head;
+    while(tail->next!=NULL){
+        tail=tail->next;
+    }
+    Node* newTail =tail->back;
+    newTail->next=nullptr;
+    tail->back=nullptr;
+    delete tail;
+    return head;
+}
+
+Node* removeKthElement(Node* head,int k){
+    if(head==NULL){
+        return NULL;
+    }
+    int cnt=0;
+    Node* kNode=head;
+    while(kNode !=NULL){
+        cnt++;
+        if(cnt==k) break;
+        kNode=kNode->next;
+    }
+    Node* prev=kNode->back;
+    Node* front=kNode->next;
+
+    if(prev==NULL && front==NULL){
+        return NULL;
+    }
+    else if(prev==NULL){
+        return deleteHead(head);
+    }
+
+    else if(prev==NULL){
+        return deleteTail(head);
+    }
+    prev->next=front;
+    front->back=prev;
+
+    kNode->next=nullptr;
+    kNode->back=nullptr;
+    delete kNode;
+    return head;
+}
 int main() {
 
     vector<int> arr = {12, 6, 4, 9};
     Node* head = convertArr2DLL(arr);
     
-    head=deleteHead(head);
+    head=removeKthElement(head,3);
     print(head);
 
     
     return 0;
 }
-
-// #ifdef _WIN32
-// int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
-//     return main();
-// }
-// #endif

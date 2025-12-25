@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
-#ifdef _WIN32
-#include <windows.h>
-#endif
+// #ifdef _WIN32
+// #include <windows.h>
+//#endif
 using namespace std;
 
 class Node {
@@ -67,11 +67,11 @@ int main() {
     
     return 0;
 }
-#ifdef _WIN32
-#ifdef __cplusplus
-extern "C"
-#endif
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
-    return main();
-}
-#endif
+// #ifdef _WIN32
+// #ifdef __cplusplus
+// extern "C"
+// #endif
+// int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
+//     return main();
+// }
+// #endif
