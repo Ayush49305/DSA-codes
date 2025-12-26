@@ -92,7 +92,7 @@ Node* removeKthElement(Node* head,int k){
         return deleteHead(head);
     }
 
-    else if(prev==NULL){
+    else if(front==NULL){
         return deleteTail(head);
     }
     prev->next=front;
