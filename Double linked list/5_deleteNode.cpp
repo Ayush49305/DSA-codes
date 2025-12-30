@@ -20,7 +20,7 @@ Node* convertArr2DLL(vector<int>& arr) {
     Node* head = new Node(arr[0]);
     Node* prev = head;
 
-    for (size_t i = 1; i < arr.size(); ++i) {
+    for (int i = 1; i < arr.size(); ++i) {
         Node* temp = new Node(arr[i]);
         prev->next = temp;
         temp->back = prev;   // IMPORTANT
@@ -44,23 +44,21 @@ void deleteNode(Node* temp){
     if(front==NULL){
         prev->next=nullptr;
         temp->back=nullptr;
-        free(temp);
+        delete temp;
         return;
     }
     prev->next=front;
     front->back=prev;
 
     temp->next=temp->back=nullptr;
-    free(temp);
+    delete temp;
 }
 
 int main() {
 
     vector<int> arr = {12, 6, 4, 9};
     Node* head = convertArr2DLL(arr);
-    deleteNode(head);
-    print(head);
-
-    
+    deleteNode(head->next->next);
+    print(head);   
     return 0;
 }
