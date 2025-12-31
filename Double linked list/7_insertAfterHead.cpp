@@ -38,18 +38,26 @@ void print(Node* head) {
     cout << endl;
 }
 
-Node* insertBeforeHead(Node* head,int val){
-    Node* newHead=new Node(val);
-    newHead->next = head;
-    head->back=newHead;
+Node* insertAfterHead(Node* head,int val){
 
-    return newHead;
+    if (head == nullptr){
+        return new Node(val);
+    }    
+    Node* newNode=new Node(val);
+    newNode->next=head->next;
+    newNode->back=head;
+    
+    if(head->next!=nullptr){
+    head->next->back=newNode;
+    }
+    head->next=newNode;
+    return head;
 }
 
 int main() {
    vector<int> arr = {12, 6, 4, 9};
     Node* head = convertArr2DLL(arr);
-    head=insertBeforeHead(head,10);
+    head=insertAfterHead(head,10);
     print(head);   
     return 0;
 }

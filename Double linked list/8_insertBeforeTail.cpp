@@ -11,7 +11,7 @@ public:
         data = val;
         next = nullptr;
         back = nullptr;
-    }   
+    }       
 };
 
 Node* convertArr2DLL(vector<int>& arr) {
@@ -38,18 +38,40 @@ void print(Node* head) {
     cout << endl;
 }
 
-Node* insertBeforeHead(Node* head,int val){
-    Node* newHead=new Node(val);
-    newHead->next = head;
-    head->back=newHead;
+Node* insertBeforeTail(Node* head,int val){
 
-    return newHead;
+    if (head == nullptr) {
+        return new Node(val);
+    }
+
+    if(head->next==NULL){       
+        Node* newHead=new Node(val);
+        newHead->next = head;
+        head->back=newHead;
+        return newHead;
+    }
+
+    
+    Node* tail=head;
+    while(tail->next!=nullptr){
+        tail=tail->next;
+    }
+    Node* prev=tail->back;
+      
+    Node* newNode=new Node(val);
+
+    newNode->next=tail;
+    newNode->back=prev;
+
+    prev->next=newNode;
+    tail->back=newNode;
+    return head;
 }
 
 int main() {
    vector<int> arr = {12, 6, 4, 9};
     Node* head = convertArr2DLL(arr);
-    head=insertBeforeHead(head,10);
+    head=insertBeforeTail(head,10);
     print(head);   
     return 0;
 }
